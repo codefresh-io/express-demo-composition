@@ -1,0 +1,22 @@
+lb :
+  image : tutum/haproxy
+  ports:
+    - 1111:80
+  links :
+    - web_2:web2
+    - web_1:web
+web_1:
+  image : express
+  ports:
+    - 2222:3000
+  environment:
+      - ID=1
+      #- PORT=80
+      - DEBUG=*
+web_2:
+ image : express
+ ports:
+  - 2223:3000
+ environment:
+    - ID=2
+    - DEBUG=*
